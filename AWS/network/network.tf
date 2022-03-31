@@ -12,7 +12,7 @@ resource "aws_vpc" "tzeks" {
 
 resource "aws_subnet" "tzeks_public" {
   count                   = length(var.network.tzeks.public_subnet_cidrs)
-  vpc_id                  = aws_vpc.main.id
+  vpc_id                  = aws_vpc.tzeks.id
   cidr_block              = element(var.network.tzeks.public_subnet_cidrs, count.index)
   availability_zone       = element(var.network.tzeks.availability_zone, count.index)
   map_public_ip_on_launch = true
@@ -22,12 +22,12 @@ resource "aws_subnet" "tzeks_public" {
 }
 
 resource "aws_internet_gateway" "default" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.tzeks.id
 }
 
 resource "aws_route_table" "tzeks_public" {
   count  = length(var.network.tzeks.public_subnet_cidrs)
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.tzeks.id
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.default.id
@@ -36,7 +36,7 @@ resource "aws_route_table" "tzeks_public" {
 
 resource "aws_route_table_association" "tzeks_public" {
   count          = length(var.network.tzeks.public_subnet_cidrs)
-  route_table_id = element(aws_route_table.tzeks_public[*].public.id, count.index)
+  route_table_id = element(aws_route_table.tzeks_public[*].id, count.index)
   subnet_id      = element(aws_subnet.tzeks_public[*].id, count.index)
 }
 
