@@ -23,7 +23,9 @@ module "eks" {
   subnet_ids = data.terraform_remote_state.network.outputs.public_subnets_ids
 
   cluster_addons = {
-    kube-proxy = {}
+    kube-proxy = {
+      resolve_conflicts = "OVERWRITE"
+    }
     vpc-cni = {
       resolve_conflicts = "OVERWRITE"
     }
