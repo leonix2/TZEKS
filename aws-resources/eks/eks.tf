@@ -84,4 +84,12 @@ resource "aws_eks_node_group" "primary" {
     aws_iam_role_policy_attachment.aws_eks_cni_policy,
     aws_iam_role_policy_attachment.aws_eks_worker_node_policy
   ]
+  tags = {
+  "k8s.io/cluster-autoscaler/tzeks"   = "owned"
+  "k8s.io/cluster-autoscaler/enabled" = "true"
+  }
+}
+
+data "aws_eks_cluster_auth" "this" {
+  name = aws_eks_cluster.tzeks.id
 }
