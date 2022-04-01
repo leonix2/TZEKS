@@ -3,11 +3,11 @@
 Немного затянул с выдачей решения задания, не обратил внимание, что нужно использовать конкретные модули для создания ресурсов, 
 и сначала сделал все просто на стандартных ресурсах (Папка aws-resources) Там все примитивно и не секурно, но задачу выполняет :).
 
-В папке aws-modules 2 версии кода, одна для [EKS Managed Node-Group](https://github.com/leonix2/TZEKS/tree/aws-modules/eks-managed), вторая для [Self-Managed](https://github.com/leonix2/TZEKS/tree/aws-modules/eks-self-managed), просто потому что было интересно поэкспериментировать... можете выбирать любую.
+В папке aws-modules 2 версии кода, одна для [EKS Managed Node-Group](https://github.com/leonix2/TZEKS/tree/main/aws-modules/eks-managed), вторая для [Self-Managed](https://github.com/leonix2/TZEKS/tree/main/aws-modules/eks-self-managed), просто потому что было интересно поэкспериментировать... можете выбирать любую.
 
 Деплой ресурсов разделен на 2 стадии:
 
-1. Директория [network](https://github.com/leonix2/TZEKS/tree/aws-modules/network) - содержит в себе все необходимые сетевые абстракции AWS.
+1. Директория [network](https://github.com/leonix2/TZEKS/tree/main/aws-modules/network) - содержит в себе все необходимые сетевые абстракции AWS.
 2. Директория eks_xxx (одна из двух на выбор) - содержит ресурсы для создания кластера, Node-groups, Автоскейлера.
 
 
